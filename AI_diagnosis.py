@@ -30,7 +30,7 @@ class CarPredictor:
         openai.api_key = self.api_key
 
         response = openai.Completion.create(
-            model="text-davinci-003",
+            model="gpt-3.5-turbo",
             prompt=formatted_text + "What could be the problem with the car based on the above responses? give me atleast 3 potential problem and short solutions of each potential problem using this format what the potential problem : Solutions and have nice spaing between since it's dirctly displayed on terminal",
             max_tokens=100
         )
@@ -60,7 +60,7 @@ class CarPredictor:
         openai.api_key = self.api_key
 
         response = openai.Completion.create(
-            model="text-davinci-003",
+            model="gpt-3.5-turbo",
             prompt=formatted_text, 
             max_tokens=100
         ) 

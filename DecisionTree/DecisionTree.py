@@ -5,50 +5,106 @@ class DecisionNode:
 
         self.decision_node = {
             "start": {
-                "prompt": "Does your car start (yes/no)? ",
+                "prompt": "Does your car start (yes/no)?",
                 "yes": "check_noise",
-                "no": "check_battery"
+                "no": "battery_terminal_check"
             },
             "check_noise": {
-                "prompt": "Does your car make noise (yes/no)? ",
+                "prompt": "Does your car make noise (yes/no)?",
                 "yes": "noise_type",
                 "no": "dashboard_light"
             },
             "check_battery": {
-                "prompt": "Is the battery plugged (yes/no)? ",
+                "prompt": "Is the battery properly connected (yes/no)?",
                 "yes": "jump_start",
-                "no": "complete"
+                "no": "battery_replace"
             },
             "noise_type": {
-                "prompt": "Is the noise rattling ? ",
-                "yes": "",
+                "prompt": "Is the noise a rattling sound?",
+                "yes": "belt_check",
                 "no": "squealing_noise_check",
             },
             "squealing_noise_check": {
-                "prompt": "Is the noise squealing ? ",
-                "yes": "",
+                "prompt": "Is the noise a squealing sound?",
+                "yes": "belt_condition_check",
                 "no": "knocking_noise_check"
             },
-            "knocking_noise_check":  {
-                "prompt": "Is is Knocking noise around the engine ?  ",
+            "knocking_noise_check": {
+                "prompt": "Is it a knocking noise around the engine?",
                 "yes": "oil_check",
-                "no": "other_noise"
+                "no": "complete"
             },
             "oil_check": {
-                "prompt": "Is your oil changed or filled within the last 6 month ? ",
+                "prompt": "Is your oil changed or filled within the last 6 months?",
                 "yes": "check_engine_light",
                 "no": "oil_level_check"
             },
             "oil_level_check": {
-                "prompt": "Is the oil level low or the oil color changed ? ",
+                "prompt": "Is the oil level low or has the oil color changed?",
                 "yes": "complete",
-                "no": ""
-
+                "no": "complete"
             },
-            "complete": {
+            
+            "dashboard_light": {
+                "prompt": "Are any dashboard lights on?",
+                "yes": "which_dashboard_light",
+                "no": "complete"
+            },
+            "battery_terminal_check": {
+                "prompt": "Are the battery terminals corroded or loose (yes/no)?",
+                "yes": "clean_and_tighten_terminals",
+                "no": "battery_voltage_check"
+            },
+            "clean_and_tighten_terminals": {
+                "prompt": "Clean and tighten the battery terminals. Did it start (yes/no)?",
+                "yes": "complete",
+                "no": "battery_voltage_check"
+            },
+            "battery_voltage_check": {
+                "prompt": "Is the battery voltage below 12.4V (yes/no)?",
+                "yes": "charge_or_replace_battery",
+                "no": "starter_motor_check"
+            },
+            "charge_or_replace_battery": {
+                "prompt": "Charge or replace the battery. Did it start (yes/no)?",
+                "yes": "complete",
+                "no": "starter_motor_check"
+            },
+            "starter_motor_check": {
+                "prompt": "Does the starter motor not engage or sound weak (yes/no)?",
+                "yes": "replace_starter_motor",
+                "no": "fuel_system_check"
+            },
+            "replace_starter_motor": {
+                "prompt": "Replace the starter motor. Did it start (yes/no)?",
+                "yes": "complete",
+                "no": "fuel_system_check"
+            },
+            "fuel_system_check": {
+                "prompt": "Is there an issue with the fuel system (fuel pump, filter, etc.) (yes/no)?",
+                "yes": "repair_fuel_system",
+                "no": "ignition_system_check"
+            },
+            "repair_fuel_system": {
+                "prompt": "Repair the fuel system. Did it start (yes/no)?",
+                "yes": "complete",
+                "no": "ignition_system_check"
+            },
+            "ignition_system_check": {
+                "prompt": "Is there an issue with the ignition system (spark plugs, coil, etc.) (yes/no)?",
+                "yes": "repair_ignition_system",
+                "no": "check_engine_light"
+            },
+            "repair_ignition_system": {
+                "prompt": "Repair the ignition system. Did it start (yes/no)?",
+                "yes": "complete",
+                "no": "check_engine_light"
+            },
+            "complete" : {
                 "prompt": "Completed, wait for diagnosis ... "
             }
         }
+
 
     def run_diagnosis(self):
         decision_list = []

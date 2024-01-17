@@ -1,9 +1,15 @@
 from Car_Information.Car_info import CarInfo
 from DecisionTree.DecisionTree import DecisionNode
 from AI_diagnosis import CarPredictor
+from dotenv import load_dotenv
+import os
+
+
+
 
 # OpenAi private API
-my_api_key = "Your Open AI API key"
+load_dotenv()
+my_api_key = "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"
 prediction = CarPredictor(my_api_key)
 
 print("\n===========  WELCOME TO AI CAR DIAGNOIS BY ERMI M ============== \n")
